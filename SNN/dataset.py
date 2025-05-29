@@ -215,5 +215,3 @@ def build_loaders(dataset, split=(0.6, 0.2), batch_size=50, *args, **kwargs):
         return train_loader, test_loader, val_loader
     
     return train_loader, test_loader
-    
-
