@@ -156,10 +156,6 @@ int total_reflections(int n){
   return total_points;
 }
 
-
-
-
-
 // input tree variables
 int i_evt;
 int n_int;
@@ -270,7 +266,9 @@ void genPhotonTree(string filename, string treename, string outputFilePath,
         int old_cell_i = (*cell_idx)[j];
         // shift cublet and cell indexes
 //cout << "PROVA" << endl;
+
         auto new_coordinates = CoordinatesShift(old_cub_i, old_cell_i, shift);
+
 //cout << "PROVA2" << endl;
         int cub_i = new_coordinates[0];
         int x_idx = new_coordinates[1];
@@ -282,7 +280,9 @@ void genPhotonTree(string filename, string treename, string outputFilePath,
         Etot[cub_i] += E;
 
         // update number of interactions
-        Nint[cub_i] += 1;
+        if (dE < -30000 && E > 10000){
+            Nint[cub_i] += 1;
+        }
 
         // check if vertex is primary
         if(dE < deltaE_vtx_thr && dE < dE_primary) { // less than, as they are negative
